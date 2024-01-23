@@ -33,7 +33,7 @@
             <a href="index.php" style='float:right'>回首頁</a> <!--float:right這個元素將浮動到右側。 -->
         </div>
         <div id="title2" title="健康促進網-回首頁">
-            <a href="index.php"><img src="./icon/02B01.jpg" alt=""></a>
+            <a href="index.php"><img src="./icon/02B01.jpg" alt=""></a> <!-- -->
         </div>
         <div id="mm">
             <div class="hal" id="lef">
@@ -68,7 +68,22 @@
                         ?>
                     </span>
                     <div class="">
-                        
+                        <?php
+                        // 获取请求中的 'do' 参数，如果不存在则默认为 'main'
+                        $do = $_GET['do'] ?? 'main';
+
+                        // 构建文件路径，假设文件在 "./front/" 目录下，文件名为请求中的 'do' 参数
+                        $file = "./front/{$do}.php";
+
+                        // 检查文件是否存在
+                        if (file_exists($file)) {
+                            // 如果文件存在，则包含该文件
+                            include $file;
+                        } else {
+                            // 如果文件不存在，则包含默认的 "main.php" 文件
+                            include "./front/main.php";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
